@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Meme Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="main.js"></script>
+</head>
+
+<script>
+
+    let id_count = 3
+
+    function createMeme(e) {
+
+        // e.preventDefault();
+        // <div class="col"> </div>
+        //         <div class="col-auto">
+        //             <div class="meme"
+        //                 style='background-image: url("https://images.pexels.com/photos/259803/pexels-photo-259803.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500")'>
+        //                 <div class="memeTextTop">
+        //                     asdfasfasdfasdfasdfsadfasdfasfasdfasdfasdfsadfasdfasfasdfasdfasdfsadfasdfasfasdfasdfasdfsadf
+        //                 </div>
+        //                 <div class="memeTextBottom">
+        //                     Bottasdsadfasfdsadasdfasfasasasdasdfasfdasdfasfadfadfam
+        //                 </div>
+        //             </div><br>
+        //         </div>
+
+        const [url, textTop, textBottom] = getFormData();
+
+        if (url === '') {
+            alert('Pleae Enter Valid URL')
+            return false
+        }
+        let htmlElement =
+            `
+            <div id='${id_count}' class="col-auto">
+                    <div class="meme" onclick="removeElement(${id_count})"
+                        style='background-image: url("${url}")'>
+                        <div class="memeTextTop">
+                                ${textTop}
+                        </div>
+                        <div class="memeTextBottom">
+                                ${textBottom}
+                        </div>
+                    </div><br>
+                </div>
+            `
+
+
+        console.log(htmlElement)
+        document.getElementById('memeRow').innerHTML += htmlElement
+        id_count++
+
+        document.getElementById("memeForm").reset();
+        return false
+
+    }
+
+
+    function getFormData() {
+        let x = document.getElementById("memeForm");
+
+        let url = x.elements[0].value
+        let textTop = x.elements[1].value
+        let textBottom = x.elements[2].value
+
+        return [url, textTop, textBottom]
+    }
+
+    function removeElement(id) {
+        document.getElementById(id).outerHTML = "";
+    }
+
+</script>
+
+<style>
+    header {
+        background-color: black;
+        text-align: center;
+        color: white;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    #form-sectiion {
+        background-color: gray;
+        background-image: url("https://veristream.com/wp-content/uploads/contact-form-background.jpg");
+        background-position: center;
+        /* Center the image */
+        background-repeat: no-repeat;
+        /* Do not repeat the image */
+        background-size: cover;
+        /* Resize the background image to cover the entire container */
+        color: black;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        opacity: 0.75;
+        font-weight: bold;
+    }
+
+    #meme-section {
+        background-color: gray;
+        background-image: url("https://d3ansictanv2wj.cloudfront.net/bot-day-background-700x600-ce7fb2df41cfbf6c827cf229da02882a.jpg");
+        background-position: center;
+        /* Center the image */
+        background-repeat: no-repeat;
+        /* Do not repeat the image */
+        background-size: cover;
+        /* Resize the background image to cover the entire container */
+        color: black;
+        padding-top: 100px;
+        padding-bottom: 50px;
+        opacity: 0.75;
+        font-weight: bold;
+    }
+
+
+
+    .meme {
+        background-position: center;
+        /* Center the image */
+        background-repeat: no-repeat;
+        /* Do not repeat the image */
+        background-size: cover;
+        position: relative;
+        min-height: 500px;
+        min-width: 500px;
+        background-color: white;
+
+
+    }
+
+    .cat {
+        background-image: url("https://images.pexels.com/photos/259803/pexels-photo-259803.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+    }
+
+    .dog {
+        background-image: url("https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/13001815/Alaskan-Malamute-On-White-03-400x267.jpg");
+    }
+
+    .dog2 {
+        background-image: url('https://www.guidedogs.org/wp-content/uploads/2018/01/Mobile.jpg')
+    }
+
+    .memeTextTop,
+    .memeTextBottom {
+        font-size: 24px;
+        font-weight: bold;
+        position: absolute;
+        left: 10%;
+        word-wrap: break-word;
+        width: calc(100% - 20%);
+        text-align: center;
+    }
+
+    .memeTextTop {
+        top: 5%
+    }
+
+    .memeTextBottom {
+        bottom: 5%;
+    }
+</style>
+
+<body>
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <h1>The Meme Generator</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p>Please Fill out the below to create your meme</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="form-sectiion">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 ml-auto mr-auto">
+                    <form id="memeForm" action="#">
+                        <div class="form-group">
+                            <label for="imageURL">Image URL:</label>
+                            <input type="text" class="form-control" id="imageURL">
+                        </div>
+                        <div class="form-group">
+                            <label for="textTop">Text Top:</label>
+                            <input type="text" class="form-control" id="textTop">
+                        </div>
+                        <div class="form-group">
+                            <label for="textBop">Text Bottom:</label>
+                            <input type="text" class="form-control" id="textBop">
+                        </div>
+                        <button class="btn btn-primary" type="button" onclick="return createMeme()">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="meme-section">
+        <div class="container">
+            <div id="memeRow" class="row">
+                <!-- <div id='1' class="col-auto">
+                    <div class="meme" onclick="removeElement(1)"
+                        style='background-image: url("https://images.pexels.com/photos/259803/pexels-photo-259803.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500")'>
+                        <div class="memeTextTop">
+                            asdfasfasdfasdfasdfsadfasdfasfasdfasdfasdfsadfasdfasfasdfasdfasdfsadfasdfasfasdfasdfasdfsadf
+                        </div>
+                        <div class="memeTextBottom">
+                            Bottasdsadfasfdsadasdfasfasasasdasdfasfdasdfasfadfadfam
+                        </div>
+                    </div><br>
+                </div>
+
+                <div id='2' class="col-auto">
+                    <div class="meme dog2" onclick="removeElement(2)">
+                        <div class="memeTextTop">
+                            asdfasfasdfasdfasdfsadfasdfasfasdfasdfasdfsadfasdfasfasdfasdfasdfsadfasdfasfasdfasdfasdfsadf
+                        </div>
+                        <div class="memeTextBottom">
+                            Bottasdsadfasfdsadasdfasfasasasdasdfasfdasdfasfadfadfam
+                        </div>
+                    </div><br> -->
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+</html>
