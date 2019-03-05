@@ -1,0 +1,121 @@
+
+header {
+    background-color: black;
+    text-align: center;
+    color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#form-sectiion {
+    background-color: gray;
+    background-image: url("https://veristream.com/wp-content/uploads/contact-form-background.jpg");
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    /* Resize the background image to cover the entire container */
+    color: black;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    opacity: 0.75;
+    font-weight: bold;
+}
+
+#meme-section {
+    background-color: gray;
+    background-image: url("https://d3ansictanv2wj.cloudfront.net/bot-day-background-700x600-ce7fb2df41cfbf6c827cf229da02882a.jpg");
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    /* Resize the background image to cover the entire container */
+    color: black;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    opacity: 0.75;
+    font-weight: bold;
+}
+
+
+
+.meme {
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    position: relative;
+    min-height: 500px;
+    min-width: 500px;
+    background-color: white;
+    cursor: pointer;
+
+    font-family: impact;
+    font-size: 2.5em;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0 #000,
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000,
+        0px 2px 0 #000,
+        2px 0px 0 #000,
+        0px -2px 0 #000,
+        -2px 0px 0 #000,
+        2px 2px 5px #000;
+}
+
+
+
+.meme::before {
+    content: '';
+    background: url('https://pngimage.net/wp-content/uploads/2018/06/x-out-png-3.png');
+    background-size: contain;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.meme:hover::before {
+    opacity: .5;
+    /* amount of opacity to blend the two images */
+}
+
+.cat {
+    background-image: url("https://images.pexels.com/photos/259803/pexels-photo-259803.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+}
+
+.dog {
+    background-image: url("https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/13001815/Alaskan-Malamute-On-White-03-400x267.jpg");
+}
+
+.dog2 {
+    background-image: url('https://www.guidedogs.org/wp-content/uploads/2018/01/Mobile.jpg')
+}
+
+.memeTextTop,
+.memeTextBottom {
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    left: 10%;
+    word-wrap: break-word;
+    width: calc(100% - 20%);
+    text-align: center;
+}
+
+.memeTextTop {
+    top: 5%
+}
+
+.memeTextBottom {
+    bottom: 5%;
+}
